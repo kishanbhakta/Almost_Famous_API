@@ -38,10 +38,17 @@ router.get('/', function(req, res){
   res.json({ message: 'This is Almost Famous API'});
 });
 
+//----------------------------------------------------------------
 //Add more routes here
+//----------------------------------------------------------------
+
+//----------------------------------------------------------------
 //All routes that end in /events STARTS here
+//----------------------------------------------------------------
+
 router.route('/events')
 
+//Create an Event
 .post(function(req, res){
 
   var event = new Events();
@@ -58,9 +65,44 @@ router.route('/events')
     res.json({message: 'Event created!'});
   });
 
-});
+})
 
-//ll routes that end in /events ENDS here
+// get all the Events (accessed at GET http://localhost:8080/api/events)
+    .get(function(req, res) {
+        Events.find(function(err, events) {
+            if (err)
+                res.send(err);
+
+            res.json(events);
+        });
+    });
+
+//----------------------------------------------------------------
+//All routes that end in /events/:event_id STARTS here
+//----------------------------------------------------------------
+router.route('/events/:event_id')
+
+//get an events with an id (accessed at GET http://localhost:8080/api/events/:event_id)
+    .get(function(req, res){
+        Events.findById(req.params.event_id, function(err, event){
+          if (err)
+            res.send(err);
+
+            res.json(event);
+        });
+    });
+
+
+
+//----------------------------------------------------------------
+//All routes that end in /events/:event_id ENDS here
+//----------------------------------------------------------------
+
+//----------------------------------------------------------------
+//All routes that end in /events ENDS here
+//----------------------------------------------------------------
+
+
 
 //register routes
 // all routes will be prefixed /api
