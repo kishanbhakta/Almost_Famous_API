@@ -1,8 +1,8 @@
-// var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-// var photosSchema = new Schema({
-//     photoURL: {type: String, require: true }
-// });
+var photosSchema = new Schema({
+    imgUrl: {type: String, require: true }
+});
 
-// module.exports = mongoose.model('Photos', photosSchema);
+module.exports = mongoose.model('Photos', photosSchema);
