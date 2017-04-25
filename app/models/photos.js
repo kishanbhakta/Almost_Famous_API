@@ -5,4 +5,4 @@
 //     photoURL: {type: String, require: true }
 // });
 
-// module.exports = mongoose.model('photos', photosSchema);
+// module.exports = mongoose.model('Photos', photosSchema);

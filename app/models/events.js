@@ -9,4 +9,4 @@ var eventsSchema = new Schema({
    , ticketLink: {type: String, require: true }
 });
 
-module.exports = mongoose.model('events', eventsSchema);
+module.exports = mongoose.model('Events', eventsSchema);

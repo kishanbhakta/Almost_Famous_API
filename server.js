@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
     mongoose.connect('mongodb://afatlanta:afatl$$@ds117311.mlab.com:17311/almostfamousatl');
 
-var events = require('./app/models/events');
-var photos = require('./app/models/photos')
+var Events = require('./app/models/events');
+var Photos = require('./app/models/photos')
 
 //configure app to use bodyParser(), Morgan
 //log requests to the console
