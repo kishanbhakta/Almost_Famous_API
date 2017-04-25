@@ -1,7 +1,7 @@
 //call the packages needed
 var express = require('express');
 var app = express();
-// var morgan = require('morgan');
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
     mongoose.connect('mongodb://afatlanta:afatl$$@ds117311.mlab.com:17311/almostfamousatl');
@@ -11,7 +11,7 @@ var Photos = require('./app/models/photos')
 
 //configure app to use bodyParser(), Morgan
 //log requests to the console
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 //get data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
