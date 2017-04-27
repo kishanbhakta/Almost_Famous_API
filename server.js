@@ -6,10 +6,19 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
     mongoose.connect('mongodb://afatlanta:afatl$$@ds117311.mlab.com:17311/almostfamousatl');
 
-var Events = require('./app/models/events');
-var Photos = require('./app/models/photos')
 
+//-------------------------------------------------------------------
+//Call Models here
+//-------------------------------------------------------------------
+var adminUser = require('./app/models/admin-users');
+var Events = require('./app/models/events');
+var Photos = require('./app/models/photos');
+
+
+//-------------------------------------------------------------------
 //configure app to use bodyParser(), Morgan
+//-------------------------------------------------------------------
+
 //log requests to the console
 app.use(morgan('dev'));
 
@@ -17,11 +26,16 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+//-------------------------------------------------------------------
 //set port
+//-------------------------------------------------------------------
 var port = process.env.PORT || 8080;
 
+
+//-------------------------------------------------------------------
 //Routes for API
+//-------------------------------------------------------------------
+
 //get an instance of express router
 var router = express.Router();
 
@@ -40,10 +54,18 @@ router.get('/', function(req, res){
 
 //----------------------------------------------------------------
 //Add more routes here
+//        ||
+//        ||
+//       \||/
+//        \/
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
 //All routes that end in /events STARTS here
+//        ||
+//        ||
+//       \||/
+//        \/
 //----------------------------------------------------------------
 
 router.route('/events')
@@ -52,7 +74,7 @@ router.route('/events')
 .post(function(req, res){
 
   var event = new Events();
-  event.date = req.body.date,
+  event.eventDate = req.body.eventDate,
   event.venue = req.body.venue,
   event.startTime = req.body.startTime,
   event.endTime = req.body.endTime,
@@ -79,6 +101,10 @@ router.route('/events')
 
 //----------------------------------------------------------------
 //All routes that end in /events/:event_id STARTS here
+//        ||
+//        ||
+//       \||/
+//        \/
 //----------------------------------------------------------------
 router.route('/events/:event_id')
 
@@ -98,7 +124,7 @@ router.route('/events/:event_id')
         if (err)
             res.send(err);
 
-          event.date = req.body.date,
+          event.eventDate = req.body.eventDate,
           event.venue = req.body.venue,
           event.startTime = req.body.startTime,
           event.endTime = req.body.endTime,
@@ -130,14 +156,26 @@ router.route('/events/:event_id')
 
 //----------------------------------------------------------------
 //All routes that end in /events/:event_id ENDS here
+//        /\
+//       /||\
+//        ||
+//        ||
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
 //All routes that end in /events ENDS here
+//        /\
+//       /||\
+//        ||
+//        ||
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
 //All routes that end in /photos STARTS here
+//        ||
+//        ||
+//       \||/
+//        \/
 //----------------------------------------------------------------
 
 router.route('/photos')
@@ -169,6 +207,10 @@ router.route('/photos')
 
 //----------------------------------------------------------------
 //All routes that end in /photos/:photo_id STARTS here
+//        ||
+//        ||
+//       \||/
+//        \/
 //----------------------------------------------------------------
 router.route('/photos/:photo_id')
 
@@ -216,18 +258,30 @@ router.route('/photos/:photo_id')
 
 //----------------------------------------------------------------
 //All routes that end in /photos/:photo_id ENDS here
+//        /\
+//       /||\
+//        ||
+//        ||
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
 //All routes that end in /photos ENDS here
+//        /\
+//       /||\
+//        ||
+//        ||
 //----------------------------------------------------------------
 
 
-
+//----------------------------------------------------------------
 //register routes
+//----------------------------------------------------------------
+
 // all routes will be prefixed /api
 app.use('/api', router);
 
+//----------------------------------------------------------------
 //start the server
+//----------------------------------------------------------------
 app.listen(port);
 console.log('Things are happening on port ' +  port);

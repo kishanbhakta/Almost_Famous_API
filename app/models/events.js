@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var eventsSchema = new Schema({
-    date: {type: String, require: true }
+    eventDate: {type: String, require: true }
    , venue: {type: String, require: true }
    , startTime: {type: String, require: true }
    , endTime: {type: String, require: true }
